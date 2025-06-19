@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const dzongkhag_controllers_1 = require("../controllers/dzongkhag.controllers");
+const router = (0, express_1.Router)();
+router.post("/", auth_middleware_1.authenticate, dzongkhag_controllers_1.createDzongkhag);
+router.get("/:id", auth_middleware_1.authenticate, dzongkhag_controllers_1.getDzongkhagById);
+router.get("/", auth_middleware_1.authenticate, dzongkhag_controllers_1.getDzongkhags);
+router.patch("/:id", auth_middleware_1.authenticate, dzongkhag_controllers_1.updateDzongkhag);
+router.delete("/:id", auth_middleware_1.authenticate, dzongkhag_controllers_1.deleteDzongkhag);
+exports.default = router;
